@@ -27,7 +27,7 @@ The TTS models themselves are not stored in this repository and need to be downl
 
 To test that everything is working correctly after these steps, use this command and listen to the output in the `generated_clips` directory that is created:
 
-`python generate_clips.py --model VITS --text "This is some test speech" --N 1 --output_dir generated_clips"`
+`python generate_clips.py --model VITS --text "This is some test speech" --N 1 --output_dir generated_clips`
 
 # Usage
 
