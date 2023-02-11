@@ -7,7 +7,7 @@ It includes two specific open-source TTS models that I have found to be useful w
 - [Nvidia Waveglow](https://github.com/NVIDIA/waveglow)
 - [VITS](https://github.com/jaywalnut310/vits)
 
-Note that the code in this repository varies greatly in quality and structure as it was derived from multiple sources. It is primarily meant for research and experimentation, and you are encouraged to makes changes and updates before relying on this code for production purposes.
+Note that the code in this repository varies greatly in quality and structure as it was derived from multiple sources. It is primarily meant for research and experimentation, and you are encouraged to makes changes and updates before relying on this code for production purposes. Also, these models are only trained on English STT datasets, and will not produce accurate speech for other languages.
 
 # Installation
 
