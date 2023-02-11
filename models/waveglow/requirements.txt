@@ -1,0 +1,9 @@
+bentoml==0.12.1
+torch==1.7.1
+numpy==1.19.2
+inflect==4.1.0
+scipy==1.5.2
+Unidecode==1.0.22
+librosa==0.6.0
+numba==0.49.1
+llvmlite==0.32.1

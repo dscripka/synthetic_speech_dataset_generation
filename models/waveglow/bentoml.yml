@@ -1,0 +1,37 @@
+version: 0.12.1
+kind: BentoService
+metadata:
+  created_at: 2021-05-31 13:57:23.628577
+  service_name: TextToSpeechModel
+  service_version: 20210531095723_F76C2A
+  module_name: text_to_speech
+  module_file: text_to_speech.py
+env:
+  pip_packages:
+  - bentoml==0.12.1
+  - torch==1.7.1
+  - numpy==1.19.2
+  - inflect==4.1.0
+  - scipy==1.5.2
+  - Unidecode==1.0.22
+  - librosa==0.6.0
+  conda_env:
+    name: bentoml-default-conda-env
+    dependencies: []
+  python_version: 3.7.6
+  docker_base_image: bentoml/model-server:0.12.1-py37
+apis:
+- name: predict
+  docs: "BentoService inference API 'predict', input: 'JsonInput', output: 'DefaultOutput'"
+  input_type: JsonInput
+  output_type: DefaultOutput
+  mb_max_batch_size: 4000
+  mb_max_latency: 20000
+  batch: false
+  route: predict
+  output_config:
+    cors: '*'
+artifacts:
+- name: model
+  artifact_type: WaveglowArtifact
+  metadata: {}
