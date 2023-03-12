@@ -10,7 +10,7 @@ import numpy as np
 parser = argparse.ArgumentParser("Generates 16khz, 16-bit PCM, single channel synthetic speech to serve as training data for wakeword detection systems")
 requiredNamed = parser.add_argument_group('required named arguments')
 requiredNamed.add_argument("--model", metavar='', type=str, help="Which model to use for generated speech (VITS or WAVEGLOW)")
-requiredNamed.add_argument("--enable_gpu", metavar='', type=bool, default=False, help="""Whether to use a GPU (if available) for generation.
+requiredNamed.add_argument("--enable_gpu", action='store_true', help="""Whether to use a GPU (if available) for generation.
                                                                                  This is reccomended as the speed of generation on CPU will be
                                                                                  significantly slower compared to GPU execution.""")
 requiredNamed.add_argument("--text", metavar='', type=str, help="The text to generate")
@@ -183,7 +183,7 @@ if args.model == "VITS":
     model = VitsModel(
         hparams_path=os.path.join(Path(__file__).parent.absolute(), "models/vits/configs/vctk_base.json"),
         checkpoint_path=os.path.join(Path(__file__).parent.absolute(), "models/vits/pretrained_models/pretrained_vctk.pth"),
-        cuda=False
+        cuda=True if args.enable_gpu else False
     )
 
     # Get speaker ids and text for each generation
@@ -232,7 +232,7 @@ elif args.model == "WAVEGLOW":
     # Imports for waveglow model
     import os
 
-    if args.enable_gpu == True:
+    if args.enable_gpu:
         os.environ["CUDA_VISIBLE_DEVICES"] = "0"
     else:
         os.environ["CUDA_VISIBLE_DEVICES"] = ""
