@@ -522,8 +522,8 @@ class SynthesizerTrn(nn.Module):
       if len(sid) > 1:
         g = self.emb_g(sid[0:1])
         for i in sid[1:]:
-          g = slerp(0.5, g, self.emb_g(torch.LongTensor([i])))
-        g = g.unsqueeze(-1)
+          g = slerp(0.5, g.cpu(), self.emb_g(torch.LongTensor([i]).to(x.device)).cpu())
+        g = g.unsqueeze(-1).to(x.device)
       else:
         g = self.emb_g(sid).unsqueeze(-1) # [b, h, 1]
     else:
